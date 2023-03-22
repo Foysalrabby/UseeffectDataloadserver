@@ -1,0 +1,13 @@
+.demostyle{
+    display: flex;
+    width: 70%;
+    border: 1px solid red;
+}
+.imagesection{
+
+    width: 20%;
+    margin-right: 10px;
+}
+.describtion{
+
+}

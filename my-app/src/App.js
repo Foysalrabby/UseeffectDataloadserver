@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
 
+import { useState, useEffect } from 'react';
+import Userdat from './Userdata/Userdat';
+ 
 function App() {
+const [user,setuser]=useState([]);
+useEffect( () =>{
+  fetch("https://randomuser.me/api/?results=15")
+  .then(res => res.json ())
+  .then(data => setuser(data.results))
+},[])
+const [takename,settakname]=useState('');
+const addmember=(name)=>{
+  console.log("member added",name);
+  settakname(name);
+
+}
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    <h2> Total team member:  {takename}  </h2>
+   {
+    
+    user.map(user => <Userdat userinfo={user}
+    addmember={addmember}
+    ></Userdat>)
+   }
+      
     </div>
-  );
+  )
 }
 
 export default App;
